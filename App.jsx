@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList } from 'react-native';
 import { faker } from '@faker-js/faker'
-
+import Lista from './src/Lista';
 
 
 export default function App() {
@@ -32,8 +32,7 @@ export default function App() {
   console.log('Initial:', feed)
   return (
     <View style={styles.container}>
-      <View style={style.header}>
-        <Text>Olá</Text>
+      <View style={styles.header}>        
         <TouchableOpacity>
           <Image
             source={require('./src/assets/images/logo.png')}
@@ -47,6 +46,12 @@ export default function App() {
           />
         </TouchableOpacity>
       </View>
+
+      <FlatList
+        showsHorizontalScrollIndicator={false}
+        data={feed}
+        renderItem={({item}) => <Lista data={item}/>}  
+      />
     </View>
   );
 }
@@ -60,9 +65,10 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 55,
     backgroundColor: '#FFF',
+    marginTop: 30,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     padding: 5,
     borderBottomWidth: 0.2,
     shadowColor: '#000',
@@ -72,6 +78,5 @@ const styles = StyleSheet.create({
     height: 23
   },
   logo: {
-
   }
 });
